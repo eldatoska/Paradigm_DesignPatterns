@@ -1,5 +1,6 @@
 import strategy.*
 import models.Book
+import observer.*
 
 fun main() {
 
@@ -48,5 +49,24 @@ fun main() {
 
     println("\nMark lost:")
     book.markLost()
+
+    // =====================
+// OBSERVER PATTERN
+// =====================
+
+println("\n=== OBSERVER PATTERN ===")
+
+    val notifier = BookNotifier()
+
+    val user1 = UserObserver("Alice")
+    val user2 = UserObserver("Bob")
+
+    notifier.addObserver(user1)
+    notifier.addObserver(user2)
+
+    notifier.bookBorrowed("Harry Potter")
+    notifier.bookReturned("Harry Potter")
+    notifier.bookReserved("Harry Potter")
+    notifier.bookLost("Harry Potter")
 
 }
